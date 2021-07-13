@@ -4,14 +4,23 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "../selenium-java-3.141.59/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://logins.daum.net/accounts/signinform.do?url=https%3A%2F%2Fmail.daum.net%2F");
-        Thread.sleep(1000);
+    private static ChromeDriver driver;
 
-        driver.findElement(By.id("id")).sendKeys("id");
-        driver.findElement(By.id("inputPwd")).sendKeys("pwd");
+    public static void main(String[] args) throws InterruptedException {
+        init();
+        DaumLogin();
+    }
+
+    static public void init(){
+        System.setProperty("webdriver.chrome.driver", "../selenium-java-3.141.59/chromedriver.exe");
+        driver = new ChromeDriver();
+    }
+
+    static public void DaumLogin(){
+        driver.get("https://logins.daum.net/accounts/signinform.do?url=https%3A%2F%2Fmail.daum.net%2F");
+
+        driver.findElement(By.id("id")).sendKeys("");
+        driver.findElement(By.id("inputPwd")).sendKeys("");
         driver.findElement(By.className("btn_comm")).click();
     }
 }
